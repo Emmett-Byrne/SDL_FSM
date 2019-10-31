@@ -3,21 +3,27 @@
 
 #include <Input.h>
 #include <PlayerFSM.h>
-#include <AnimatedSprite.h>
+#include "SDLAnimation.h"
 
 class Player
 {
 private:
 	PlayerFSM m_state;
-	AnimatedSprite m_animated_sprite;
+	SDLAnimation* m_currentAnimation;
+	SDLAnimation m_idleAnim;
+	SDLAnimation m_climbingAnim;
+	SDLAnimation m_jumpingAnim;
+	SDLAnimation m_walkingAnim;
+	SDLAnimation m_fallingAnim;
 	Player();
 
 public:
-	Player(const AnimatedSprite&);
+	Player(char* texturePath, SDL_Renderer* renderer);
 	~Player();
-	AnimatedSprite& getAnimatedSprite();
+	void setAnimations(SDLAnimation idle, SDLAnimation climbing, SDLAnimation jumping, SDLAnimation running, SDLAnimation falling);
 	void handleInput(Input);
 	void update();
+	void render(SDL_Renderer* renderer);
 };
 
 #endif // !PLAYER_H

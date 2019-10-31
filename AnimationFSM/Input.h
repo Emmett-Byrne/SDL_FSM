@@ -11,7 +11,9 @@ public:
 		IDLE,
 		UP,
 		LEFT,
-		RIGHT
+		RIGHT,
+		DOWN,
+		SPACE
 	};
 
 	void setCurrent(Action);

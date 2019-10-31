@@ -3,7 +3,6 @@
 
 PlayerFSM::PlayerFSM()
 {
-	m_current = new Idle();
 }
 
 PlayerFSM::~PlayerFSM() {}
@@ -28,17 +27,27 @@ State* PlayerFSM::getPrevious()
 	return m_previous;
 }
 
-void PlayerFSM::idle()
+void PlayerFSM::idle(SDLAnimation& t_animation)
 {
-	m_current->idle(this);
+	m_current->idle(this, t_animation);
 }
 
-void PlayerFSM::jumping()
+void PlayerFSM::jumping(SDLAnimation& t_animation)
 {
-	m_current->jumping(this);
+	m_current->jumping(this, t_animation);
 }
 
-void PlayerFSM::climbing()
+void PlayerFSM::climbing(SDLAnimation& t_animation)
 {
-	m_current->climbing(this);
+	m_current->climbing(this, t_animation);
+}
+
+void PlayerFSM::falling(SDLAnimation& t_animation)
+{
+	m_current->falling(this, t_animation);
+}
+
+void PlayerFSM::walking(SDLAnimation& t_animation)
+{
+	m_current->walking(this, t_animation);
 }

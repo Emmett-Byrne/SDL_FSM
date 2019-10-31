@@ -1,6 +1,8 @@
 #ifndef PLAYER_FSM_H
 #define PLAYER_FSM_H
 
+#include <SDLAnimation.h>
+
 class PlayerFSM
 {
 
@@ -20,9 +22,11 @@ public:
 	State* getCurrent();
 	State* getPrevious();
 	
-	void idle();
-	void jumping();
-	void climbing();
+	void idle(SDLAnimation& t_animation);
+	void jumping(SDLAnimation& t_animation);
+	void climbing(SDLAnimation& t_animation);
+	void falling(SDLAnimation& t_animation);
+	void walking(SDLAnimation& t_animation);
 
 // Try uncommenting and comment the declaration above
 //private:

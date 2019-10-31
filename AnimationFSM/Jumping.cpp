@@ -1,18 +1,41 @@
+#include <Idle.h>
 #include <Jumping.h>
 #include <Climbing.h>
-#include <Idle.h>
+#include <Falling.h>
+#include <Walking.h>
 
 #include <string>
 
-void Jumping::idle(PlayerFSM* a)
+void Jumping::update()
 {
-	std::cout << "Jumping -> Idle" << std::endl;
-	a->setCurrent(new Idle());
-	delete this;
+	animation.nextFrame();
 }
-void Jumping::climbing(PlayerFSM* a)
+
+void Jumping::render(SDL_Renderer* renderer)
+{
+	animation.render(renderer);
+}
+
+void Jumping::idle(PlayerFSM* a, SDLAnimation& t_animation)
+{
+}
+void Jumping::jumping(PlayerFSM* a, SDLAnimation& t_animation)
+{
+}
+void Jumping::climbing(PlayerFSM* a, SDLAnimation& t_animation)
 {
 	std::cout << "Jumping -> Climbing" << std::endl;
-	a->setCurrent(new Climbing());
+	a->setCurrent(new Climbing(t_animation));
 	delete this;
+}
+
+void Jumping::falling(PlayerFSM* a, SDLAnimation& t_animation)
+{
+	std::cout << "Jumping -> Falling" << std::endl;
+	a->setCurrent(new Falling(t_animation));
+	delete this;
+}
+
+void Jumping::walking(PlayerFSM* a, SDLAnimation& t_animation)
+{
 }

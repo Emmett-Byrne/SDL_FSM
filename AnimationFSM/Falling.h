@@ -1,14 +1,11 @@
-#ifndef CLIMBING_H
-#define CLIMBING_H
-
-#include <State.h>
+#pragma once
+#include "State.h"
 #include "SDLAnimation.h"
-
-class Climbing : public State
+class Falling :	public State
 {
 public:
-	Climbing(SDLAnimation& t_animation) : animation(t_animation) {};
-	~Climbing() {};
+	Falling(SDLAnimation& t_animation) : animation(t_animation) {};
+	void handleInput();
 	void update();
 	void render(SDL_Renderer* renderer);
 	void idle(PlayerFSM* a, SDLAnimation& t_animation);
@@ -21,4 +18,3 @@ private:
 	SDLAnimation& animation;
 };
 
-#endif // !IDLE_H
