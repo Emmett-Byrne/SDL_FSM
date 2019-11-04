@@ -1,5 +1,4 @@
 #include <iostream>
-#include <SFML/Graphics.hpp>
 #include <AnimatedSprite.h>
 #include <Player.h>
 #include <Input.h>
@@ -15,8 +14,6 @@ SDLAnimation createAnim(int startPosX, SDL_Renderer* renderer);
 
 int main(int argc, char* argv[])
 {
-	// Create the main window
-	//sf::RenderWindow window(sf::VideoMode(800, 600), "SFML window");
 
 
 	SDL_Window* window = SDL_CreateWindow("title", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 800, 600, 0);
@@ -29,23 +26,6 @@ int main(int argc, char* argv[])
 
 	SDLAnimation anim = createAnim(3, renderer);
 
-	//// Load a sprite to display
-	//sf::Texture texture;
-	//if (!texture.loadFromFile("assets\\grid.png")) {
-	//	DEBUG_MSG("Failed to load file");
-	//	return EXIT_FAILURE;
-	//}
-
-	//// Setup Players Default Animated Sprite
-	//AnimatedSprite animated_sprite(texture);
-	//animated_sprite.addFrame(sf::IntRect(3, 3, 84, 84));
-	//animated_sprite.addFrame(sf::IntRect(88, 3, 84, 84));
-	//animated_sprite.addFrame(sf::IntRect(173, 3, 84, 84));
-	//animated_sprite.addFrame(sf::IntRect(258, 3, 84, 84));
-	//animated_sprite.addFrame(sf::IntRect(343, 3, 84, 84));
-	//animated_sprite.addFrame(sf::IntRect(428, 3, 84, 84));
-
-	//// Setup the Player
 	Player player("assets\\grid.png", renderer);
 	player.setAnimations(createAnim(3, renderer), createAnim(88, renderer), createAnim(173, renderer), createAnim(256, renderer), createAnim(343, renderer));
 	Input input;
@@ -64,11 +44,7 @@ int main(int argc, char* argv[])
 
 
 		SDL_Event event;
-		/* Poll for events. SDL_PollEvent() returns 0 when there are no  */
-		/* more events on the event queue, our while loop will exit when */
-		/* that occurs.                                                  */
 		while (SDL_PollEvent(&event)) {
-			/* We are only worried about SDL_KEYDOWN and SDL_KEYUP events */
 			switch (event.type) {
 			case SDL_KEYDOWN:
 				switch (event.key.keysym.sym)
@@ -112,8 +88,6 @@ int main(int argc, char* argv[])
 
 		SDL_RenderClear(renderer);
 		player.render(renderer);
-		//anim.render(renderer); // player.render when implemented
-		//anim.nextFrame();
 		SDL_RenderPresent(renderer);
 
 		frameTime = SDL_GetTicks() - frameStart;
